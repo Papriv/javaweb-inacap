@@ -27,6 +27,7 @@
                 <th>ID</th>
                 <th>NOMBRE</th>
                 <th>DESCRIPCION</th>
+                <th>ACCIONES</th>
             </thead>
             <tbody>
             <%
@@ -38,6 +39,7 @@
                     out.println("<td>"+con.getRs().getString("id")+"</td>");
                     out.println("<td>"+con.getRs().getString("name")+"</td>");
                     out.println("<td>"+con.getRs().getString("description")+"</td>");
+                    out.println("<td><a href=editar.jsp?edit="+con.getRs().getString("id")+">editar</a></td>");
                   out.println("</tr>");
               }
 
