@@ -46,4 +46,7 @@ public class Course {
         con.runSql("insert into courses(name,description,created_at,state)"
                 + "values('"+this.getName()+"','"+this.getDescription()+"',now(),'"+this.getState()+"')");
     }
+    public void update(){
+         con.runSql("update courses set name='"+this.getName()+"',description='"+this.getDescription()+"' where id='"+this.getId()+"'"); 
+    }
 }

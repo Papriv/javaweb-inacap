@@ -33,7 +33,7 @@
                     <td><input type="text" name="description" value=<% out.println(""+con.getRs().getString("description")); %>></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Crear curso"></td>
+                    <td><input type="submit" value="Actualizar curso"></td>
                 </tr>
             </table>
         </form>
