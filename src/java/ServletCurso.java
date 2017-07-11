@@ -19,9 +19,9 @@ public class ServletCurso extends HttpServlet {
                 out.println("DELETE NULO");
             }else{
                 String id=request.getParameter("delete");
-                out.println(""+id);
                 course.setId(id);
                 course.delete();
+                out.println(" Su registro ha sido eliminado !!! <a href=cursos/index.jsp>Volver </a>");
             }
                     
             if(request.getParameter("accion").equals("registrar")){
