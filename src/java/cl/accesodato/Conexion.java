@@ -9,7 +9,7 @@ public class Conexion {
     private String driver="com.mysql.jdbc.Driver";
     private String url="jdbc:mysql://localhost:3306/inacap";
     private String user="root";
-    private String pass="n3tc0m123";
+    private String pass="";
     public Conexion(){
         try{
             Class.forName(driver);

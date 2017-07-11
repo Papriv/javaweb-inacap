@@ -22,10 +22,8 @@ public class ServletCurso extends HttpServlet {
                 out.println(""+id);
                 course.setId(id);
                 course.delete();
-                
             }
-            
-            
+                    
             if(request.getParameter("accion").equals("registrar")){
                 String name=request.getParameter("name");
                 String description=request.getParameter("description");
