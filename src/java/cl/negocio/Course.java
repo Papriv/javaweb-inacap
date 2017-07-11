@@ -49,4 +49,7 @@ public class Course {
     public void update(){
          con.runSql("update courses set name='"+this.getName()+"',description='"+this.getDescription()+"' where id='"+this.getId()+"'"); 
     }
+    public void delete(){
+       con.runSql("update courses set state='pasivo' where id='"+this.getId()+"'");
+    }
 }

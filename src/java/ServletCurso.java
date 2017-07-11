@@ -15,6 +15,17 @@ public class ServletCurso extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Course course=new Course();
+            if(request.getParameter("delete")==null ){
+                out.println("DELETE NULO");
+            }else{
+                String id=request.getParameter("delete");
+                out.println(""+id);
+                course.setId(id);
+                course.delete();
+                
+            }
+            
+            
             if(request.getParameter("accion").equals("registrar")){
                 String name=request.getParameter("name");
                 String description=request.getParameter("description");
@@ -22,7 +33,7 @@ public class ServletCurso extends HttpServlet {
                 course.setDescription(description);
                 course.setState("creado");
                 course.save();
-                response.sendRedirect("cursos/index.jsp");
+              
             }
             else if(request.getParameter("accion").equals("actualizar")){
                 String id=request.getParameter("id");
@@ -35,6 +46,15 @@ public class ServletCurso extends HttpServlet {
                 course.update();
                 response.sendRedirect("cursos/index.jsp");
             }
+            
+            
+            
+            /*else{
+                String id=request.getParameter("del");
+                course.setId(id);
+                course.delete();
+                response.sendRedirect("cursos/index.jsp");
+            }*/
         }
     }
 

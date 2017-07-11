@@ -27,19 +27,21 @@
                 <th>ID</th>
                 <th>NOMBRE</th>
                 <th>DESCRIPCION</th>
-                <th>ACCIONES</th>
+                <th>EDITAR</th>
+                <th>ELIMINAR</th>
             </thead>
             <tbody>
             <%
             //Course course=new Course();
               Conexion con=new Conexion();
-              con.setSQL("select * from courses");
+              con.setSQL("select * from courses where state='activo'");
               while(con.getRs().next()){
                   out.println("<tr>");
                     out.println("<td>"+con.getRs().getString("id")+"</td>");
                     out.println("<td>"+con.getRs().getString("name")+"</td>");
                     out.println("<td>"+con.getRs().getString("description")+"</td>");
                     out.println("<td><a href=editar.jsp?edit="+con.getRs().getString("id")+">editar</a></td>");
+                    out.println("<td><a href=../ServletCurso?delete="+con.getRs().getString("id")+">eliminar</a></td>");
                   out.println("</tr>");
               }
 
