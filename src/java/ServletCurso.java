@@ -23,7 +23,7 @@ public class ServletCurso extends HttpServlet {
                     course.setDescription(description);
                     course.setState("activo");
                     course.save();
-                    response.sendRedirect("cursos/index.jsp");
+                    response.sendRedirect("administrator/cursos/index.jsp");
 
                 } else if (request.getParameter("accion").equals("actualizar")) {
                     String id = request.getParameter("id");
@@ -34,14 +34,14 @@ public class ServletCurso extends HttpServlet {
                     course.setDescription(description);
                     course.setState("activo");
                     course.update();
-                    response.sendRedirect("cursos/index.jsp");
+                    response.sendRedirect("administrator/cursos/index.jsp");
                 }
 
             } else {
                 String id = request.getParameter("delete");
                 course.setId(id);
                 course.delete();
-                out.println(" Su registro ha sido eliminado !!! <a href=cursos/index.jsp>Volver </a>");
+                out.println(" Su registro ha sido eliminado !!! <a href=administrator/cursos/index.jsp>Volver </a>");
             }
 
             /*else{

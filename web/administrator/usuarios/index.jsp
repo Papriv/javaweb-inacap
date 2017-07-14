@@ -4,8 +4,9 @@
 <%@ page import="cl.negocio.Usuario" %>
 <%
     HttpSession sesion=request.getSession();
-    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false")  ){
-        response.sendRedirect("../index.jsp");
+    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false") || sesion.getAttribute("conectado").equals("true-student") ){
+   
+        response.sendRedirect("../../index.jsp");
     }else{
     
     }
@@ -17,7 +18,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+        <form method="post" action="../../ServletUsuario?accion=cerrar">
+            <input type="submit" value="Cerrar Sesion">
+        </form>
         <h1>Modulo Usuario</h1>
         <br>
         <a href="crear.jsp">Crear Nueva cuenta</a>
@@ -26,17 +29,21 @@
                 <th>ID</th>
                 <th>NOMBRE</th>
                 <th>1ER APELLIDO</th>
+                <th>2do APELLIDO</th>
+                <th>ROL USUARIO</th>
             </thead>
             <tbody>
             <%
             //Course course=new Course();
               Conexion con=new Conexion();
-              con.setSQL("select * from users");
+              con.setSQL("select users.id,users.name,users.apepat,users.apemat,roles.type as type from users,roles where users.role_id=roles.id and state='activo'");
               while(con.getRs().next()){
                   out.println("<tr>");
                     out.println("<td>"+con.getRs().getString("id")+"</td>");
                     out.println("<td>"+con.getRs().getString("name")+"</td>");
                     out.println("<td>"+con.getRs().getString("apepat")+"</td>");
+                    out.println("<td>"+con.getRs().getString("apemat")+"</td>");
+                    out.println("<td>"+con.getRs().getString("type")+"</td>");
                   out.println("</tr>");
               }
 

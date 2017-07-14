@@ -5,8 +5,8 @@
 <%@ page import="cl.negocio.Course" %>
 <%
     HttpSession sesion=request.getSession();
-    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false")  ){
-        response.sendRedirect("../index.jsp");
+    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false") || sesion.getAttribute("conectado").equals("true-student") ){
+        response.sendRedirect("../../index.jsp");
     }else{
     
     }
@@ -17,6 +17,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form method="post" action="../../ServletUsuario?accion=cerrar">
+            <input type="submit" value="Cerrar Sesion">
+        </form>
         <h1>MODULO DE CURSOS</h1><br>
         
         <a href="crear.jsp">NUEVO CURSO</a><br>

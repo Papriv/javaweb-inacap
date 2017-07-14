@@ -4,18 +4,37 @@
     Author     : yodebian
 --%>
 
+<%@page import="cl.accesodato.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    HttpSession sesion=request.getSession();
+    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false") || sesion.getAttribute("conectado").equals("true-student") ){
+        response.sendRedirect("../../index.jsp");
+    }else{
+    
+    }
+ %>
+<%
+
+    //Course course=new Course();
+    Conexion con = new Conexion();
+
+
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
+        <form method="post" action="../../ServletUsuario?accion=cerrar">
+            <input type="submit" value="Cerrar Sesion">
+        </form>    
         <h1>Nuevo Usuario</h1>
         <br>
-         <h1>Crear nuevo usuario</h1>
-        <form method="post" action="../ServletUsuario?accion=registrar">
+        <form method="post" action="../../ServletUsuario?accion=registrar">
             <table>
                 <tr>
                     <td>Nombre</td>
@@ -28,6 +47,19 @@
                 <tr>
                     <td>2do Apellido</td>
                     <td><input type="text" name="apemat"></td>
+                </tr>
+                <tr>
+                    <td>Rol de Usuario</td>
+                    <td>
+                        <select name="role_id">
+                            <%   con.setSQL("select * from roles");
+                                while (con.getRs().next()) {
+                            %>
+                            <option value="<% out.println(con.getRs().getString("id"));  %>"><% out.println(con.getRs().getString("type"));  %></option>
+                            <%    }   %>
+                        </select>
+
+                    </td>
                 </tr>
                 <tr>
                     <td>Cuenta Usuario</td>

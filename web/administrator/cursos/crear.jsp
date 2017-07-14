@@ -1,5 +1,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession sesion=request.getSession();
+    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false") || sesion.getAttribute("conectado").equals("true-student") ){
+        response.sendRedirect("../../index.jsp");
+    }else{
+    
+    }
+ %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,8 +15,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form method="post" action="../../ServletUsuario?accion=cerrar">
+            <input type="submit" value="Cerrar Sesion">
+        </form>
         <h1>CREAR NUEVO CURSO</h1><br>
-        <form method="post" action="../ServletCurso?accion=registrar">
+        <form method="post" action="../../ServletCurso?accion=registrar">
             <table>
                 <tr>
                     <td>Nombre:</td>    

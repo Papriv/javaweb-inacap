@@ -8,8 +8,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="registrar.jsp">Registrar Usuario</a><br>
-        
         <form method="post" action="ServletUsuario?accion=ingresar">
             <table>
                 <tr>

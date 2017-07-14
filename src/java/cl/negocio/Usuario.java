@@ -14,24 +14,27 @@ public class Usuario {
     private String username;
     private String password;
     private String created_at;
+    private String role_id;
     Conexion con;
     public Usuario(){
         con=new Conexion();
     }
     
     public void save(){
-        String sql="insert into users(name,apepat,apemat,username,password,created_at,state) values('"+this.getName()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getUsername()+"','"+this.getPassword()+"',now(),'activo')";
+        String sql="insert into users(name,apepat,apemat,username,password,created_at,state,role_id) values('"+this.getName()+"','"+this.getApepat()+"','"+this.getApemat()+"','"+this.getUsername()+"','"+this.getPassword()+"',now(),'activo','"+this.getRole_id()+"')";
         con.runSql(sql);
     }
     
     
     public int validar(){
-        String sql="select * from users where username='"+this.getUsername()+"'";
+        String sql="select users.username,users.password,roles.type as type from users,roles where users.role_id=roles.id and username='"+this.getUsername()+"'";
         con.setSQL(sql);
         try {
             while(con.getRs().next()){
-                if(con.getRs().getString("password").equals(this.getPassword())){
+                if(con.getRs().getString("password").equals(this.getPassword()) && con.getRs().getString("type").equals("administrator")  ){
                     return 1;
+                } if(con.getRs().getString("password").equals(this.getPassword()) && con.getRs().getString("type").equals("student")  ){
+                    return 2;
                 }else{
                     return 0;
                 }
@@ -47,6 +50,15 @@ public class Usuario {
         return id;
     }
 
+    public String getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(String role_id) {
+        this.role_id = role_id;
+    }
+    
+    
     public void setId(String id) {
         this.id = id;
     }

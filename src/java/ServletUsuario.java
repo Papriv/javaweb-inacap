@@ -23,8 +23,11 @@ public class ServletUsuario extends HttpServlet {
                 usu.setPassword(password);
                 
                 if (usu.validar() == 1) {
-                    sesion.setAttribute("conectado", "true");
-                    response.sendRedirect("inicio.jsp");
+                    sesion.setAttribute("conectado", "true-admin");
+                    response.sendRedirect("administrator/inicio.jsp");
+                }else if(usu.validar()==2){
+                    sesion.setAttribute("conectado", "true-student");
+                    response.sendRedirect("student/inicio.jsp");
                 } else {
                     sesion.setAttribute("conectado", "false");
                     response.sendRedirect("index.jsp");
@@ -35,13 +38,15 @@ public class ServletUsuario extends HttpServlet {
                 String apemat=request.getParameter("apemat");
                 String username=request.getParameter("username");
                 String password=request.getParameter("password");
+                String role_id=request.getParameter("role_id");
                 usu.setName(name);
                 usu.setApepat(apepat);
                 usu.setApemat(apemat);
                 usu.setUsername(username);
                 usu.setPassword(password);
+                usu.setRole_id(role_id);
                 usu.save();
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("administrator/usuarios/index.jsp");
             }else if(request.getParameter("accion").equals("cerrar")){
                 sesion.invalidate();
                 response.sendRedirect("index.jsp");
