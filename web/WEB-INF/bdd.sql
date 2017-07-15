@@ -59,3 +59,18 @@ insert into users_courses(user_id,course_id,created_at)
 
 insert into users_courses(user_id,course_id,created_at) 
             values(2,2,now());
+
+//ESTO ES PARA EL EJEMPLO DE JQUERY
+create table ciudades(
+    id int(10) primary key not null auto_increment,
+    name varchar(25),
+    pais_id int(10));
+
+insert into ciudades(name,pais_id)
+            values('punta arenas',1);
+
+insert into ciudades(name,pais_id)
+            values('santiago',1);
+
+insert into ciudades(name,pais_id)
+            values('rio gallegos',2);

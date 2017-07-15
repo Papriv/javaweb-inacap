@@ -8,15 +8,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    HttpSession sesion=request.getSession();
-    if(sesion.getAttribute("conectado")==null || sesion.getAttribute("conectado").equals("false") || sesion.getAttribute("conectado").equals("true-student") ){
+    HttpSession sesion = request.getSession();
+    if (sesion.getAttribute("conectado") == null || sesion.getAttribute("conectado").equals("false") || sesion.getAttribute("conectado").equals("true-student")) {
         response.sendRedirect("../../index.jsp");
-    }else{
-    
-    }
- %>
-<%
+    } else {
 
+    }
+%>
+<%
     //Course course=new Course();
     Conexion con = new Conexion();
 
@@ -27,6 +26,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     </head>
     <body>
         <form method="post" action="../../ServletUsuario?accion=cerrar">
@@ -38,7 +38,7 @@
             <table>
                 <tr>
                     <td>Nombre</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="name"  id="name"></td>
                 </tr>
                 <tr>
                     <td>1er Apellido</td>
@@ -52,11 +52,11 @@
                     <td>Rol de Usuario</td>
                     <td>
                         <select name="role_id">
-                     -       <%   con.setSQL("select * from roles");
+                            -       <%   con.setSQL("select * from roles");
                                 while (con.getRs().next()) {
                             %>
                             <option value="<% out.println(con.getRs().getString("id"));  %>"><% out.println(con.getRs().getString("type"));  %></option>
-                            <%    }   %>
+                            <%    }%>
                         </select>
 
                     </td>
@@ -70,9 +70,11 @@
                     <td><input type="password" name="password"></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Crear Usuario"></td>  
+                    <td><input type="submit" value="Crear Usuario" ></td>  
+                    <td><button id="enviar"> PRUEBA DE VALIDACION</button></td>
                 </tr>
             </table>
         </form>
     </body>
 </html>
+
