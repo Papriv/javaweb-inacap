@@ -52,7 +52,7 @@
                     <td>Rol de Usuario</td>
                     <td>
                         <select name="role_id">
-                            <%   con.setSQL("select * from roles");
+                     -       <%   con.setSQL("select * from roles");
                                 while (con.getRs().next()) {
                             %>
                             <option value="<% out.println(con.getRs().getString("id"));  %>"><% out.println(con.getRs().getString("type"));  %></option>

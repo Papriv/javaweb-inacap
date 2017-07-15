@@ -2,6 +2,7 @@ package cl.negocio;
 
 import cl.accesodato.Conexion;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +18,11 @@ public class Usuario {
     private String role_id;
     Conexion con;
     public Usuario(){
-        con=new Conexion();
+         con=new Conexion();
+    }
+    public Usuario(String id,String name){
+        this.id=id;
+        this.name=name;
     }
     
     public void save(){
@@ -118,6 +123,7 @@ public class Usuario {
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
+    
     
     
 }
